@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
+import { Pokemon } from "../utils";
 
 const apiUrl = import.meta.env.VITE_APP_API_URL
-
-interface Pokemon {
-  name: string;
-  url: string;
-}
 
 const useFetchPokemon = () => {
   const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);

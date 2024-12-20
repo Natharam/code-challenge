@@ -1,3 +1,4 @@
+import List from "./components/List.tsx";
 import useFetchPokemon from "./hooks/useFetchPokemon.ts";
 
 const App = () => {
@@ -8,11 +9,7 @@ const App = () => {
       <h1>Pokémon List</h1>
       {loading && <>loading...</>}
       {error && <>Error while fetching pokemon</>}
-      <ul>
-        {pokemonList.map((pokemon, index) => (
-          <li key={index}>{pokemon.name}</li>
-        ))}
-      </ul>
+      <List items={pokemonList} /> {/* Pass names to List component */}
     </div>
   )
 }
