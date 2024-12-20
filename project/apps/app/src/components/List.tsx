@@ -1,15 +1,24 @@
 // /ui/List.tsx
-import React from "react";
-import { Pokemon } from "../utils";
+import React, { useEffect } from "react";
+import { RootState } from "../redux/store";
+import { useSelector, useDispatch } from "react-redux";
 
-interface ListProps {
-  items: Pokemon[];
-}
+const List: React.FC = () => {
+  const dispatch = useDispatch();
 
-const List: React.FC<ListProps> = ({ items }) => {
+  useEffect(() => {
+    // @ts-ignore
+    dispatch(fetchPokemon());
+  }, [dispatch]);
+
+  const { list, status } = useSelector((state: RootState) => state.pokemon);
+
   return (
     <ul className="list-container">
-      {items.map((item, index) => (
+      {status === 'loading' && <>loading...</>}
+      {status === 'failed' && <>Error while fetching pokemon</>}
+
+      {list.map((item, index) => (
         <li key={index} className="list-item">
           {item.name}
         </li>
