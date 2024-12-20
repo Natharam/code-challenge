@@ -1,13 +1,19 @@
-import { List } from 'ui'
-
-const api = "https://pokeapi.co/api/v2/pokemon?limit=151"
+import useFetchPokemon from "./hooks/useFetchPokemon.ts";
 
 const App = () => {
+  const { pokemonList, loading, error } = useFetchPokemon()
+
   return (
-  <>
-    <h1>Pokemon list:</h1>
-    <List />
-  </>
+    <div>
+      <h1>Pokémon List</h1>
+      {loading && <>loading...</>}
+      {error && <>Error while fetching pokemon</>}
+      <ul>
+        {pokemonList.map((pokemon, index) => (
+          <li key={index}>{pokemon.name}</li>
+        ))}
+      </ul>
+    </div>
   )
 }
 
