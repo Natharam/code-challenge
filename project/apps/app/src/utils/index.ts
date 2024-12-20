@@ -5,5 +5,5 @@ export interface Pokemon {
 
 export interface PokemonState {
   list: Pokemon[];
-  status: "loading" | "succeeded" | "failed";
+  status: "idle" | "loading" | "succeeded" | "failed";
 }
